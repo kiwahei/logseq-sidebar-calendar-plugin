@@ -2,7 +2,7 @@
 
 Sidebar calendar plugin for logseq. (i only tested in logseq db!)
 
-![Logseq Sidebar Calendar plugin Banner](https://raw.githubusercontent.com/kiwahei/logseq-sidebar-calendar-plugin/main/banner.png) 
+![Logseq Sidebar Calendar plugin Banner](https://raw.githubusercontent.com/kiwahei/logseq-sidebar-calendar-plugin/main/capture.png) 
 
 ---
 
