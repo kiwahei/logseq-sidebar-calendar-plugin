@@ -1,0 +1,358 @@
+/* ===== Reset scoped to the panel ===== */
+#logseq-calendar-panel,
+#logseq-calendar-panel *,
+#logseq-calendar-panel *::before,
+#logseq-calendar-panel *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== CSS variables representing the current theme, scoped to the panel ===== */
+#logseq-calendar-panel {
+  --cal-bg: var(--left-sidebar-bg-color, #ffffff);
+  --cal-text: hsl(var(--foreground));
+  --cal-border: var(--ls-border-color, #e5e7eb);
+  --cal-hover-bg: var(--ls-tertiary-background-color, #f3f4f6);
+  --cal-secondary-text: var(--ls-secondary-text-color, #6b7280);
+  --cal-link: var(--ls-link-text-color, #ffffff);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: transparent;
+  user-select: none;
+}
+
+/* Explicit fallbacks if Logseq variables aren't defined in the parent context */
+/* html.dark #logseq-calendar-panel,
+#logseq-calendar-panel.dark {
+  --cal-bg: #18181a;
+  --cal-text: #e4e4e7;
+  --cal-border: #27272a;
+  --cal-hover-bg: #27272a;
+  --cal-secondary-text: #a1a1aa;
+  --cal-link: #3b82f6;
+}
+
+html.light #logseq-calendar-panel,
+#logseq-calendar-panel.light {
+  --cal-bg: #ffffff;
+  --cal-text: #18181b;
+  --cal-border: #e4e4e7;
+  --cal-hover-bg: #f4f4f5;
+  --cal-secondary-text: #71717a;
+  --cal-link: #2563eb;
+} */
+
+/* ===== Panel ===== */
+#logseq-calendar-panel {
+  background: var(--cal-bg);
+  color: var(--cal-text);
+  border-top: 1px solid color-mix(in srgb, var(--cal-link) 15%, transparent);
+  padding: 8px 10px 10px;
+}
+
+/* ===== Header ===== */
+#logseq-calendar-panel .panel-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+#logseq-calendar-panel .header-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cal-secondary-text);
+  text-transform: uppercase;
+}
+
+#logseq-calendar-panel .header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#logseq-calendar-panel .header-month {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cal-text);
+  flex: 1;
+  text-align: center;
+}
+
+#logseq-calendar-panel .nav-btn {
+  background: none;
+  border: 1px solid var(--cal-border);
+  border-radius: 4px;
+  color: var(--cal-text);
+  font-size: 10px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+#logseq-calendar-panel .nav-btn:hover {
+  background: var(--cal-hover-bg);
+}
+
+#logseq-calendar-panel .header-sep {
+  color: var(--cal-secondary-text);
+  font-weight: 400;
+}
+
+/* ===== Clickable ===== */
+#logseq-calendar-panel .clickable {
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.12s ease;
+  padding: 1px 4px;
+}
+
+#logseq-calendar-panel .clickable:hover {
+  background: var(--cal-hover-bg);
+}
+
+#logseq-calendar-panel .clickable.has-page {
+  text-decoration: underline;
+  text-decoration-color: var(--cal-link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+/* ===== Calendar Grid ===== */
+#logseq-calendar-grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#logseq-calendar-grid thead th {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cal-secondary-text);
+  padding: 4px 0 3px;
+  text-align: center;
+}
+
+#logseq-calendar-grid thead th.wk-col {
+  width: 26px;
+}
+
+#logseq-calendar-grid tbody td {
+  text-align: center;
+  padding: 0;
+  height: 26px;
+  vertical-align: middle;
+}
+
+/* ===== Day Cells ===== */
+#logseq-calendar-panel .day-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+  position: relative;
+  border-radius: 4px;
+}
+
+#logseq-calendar-panel .day-cell:hover {
+  background: var(--cal-hover-bg);
+}
+
+#logseq-calendar-panel .day-cell.today {
+  background: color-mix(in srgb, var(--cal-link) 15%, transparent);
+  color: var(--cal-text);
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+#logseq-calendar-panel .day-cell.today:hover {
+  opacity: 0.85;
+}
+
+#logseq-calendar-panel .day-cell.other-month {
+  color: var(--cal-secondary-text);
+  opacity: 0.45;
+}
+
+#logseq-calendar-panel .day-cell.has-page::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  width: 3px;
+  height: 3px;
+  background-color: var(--cal-link);
+  border-radius: 50%;
+}
+
+#logseq-calendar-panel .day-cell.today.has-page::after {
+  background-color: #fff;
+}
+
+/* ===== Week Number ===== */
+#logseq-calendar-panel .week-cell {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cal-secondary-text);
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1px 3px;
+  transition: background 0.12s ease;
+}
+
+#logseq-calendar-panel .week-cell:hover {
+  background: var(--cal-hover-bg);
+  color: var(--cal-text);
+}
+
+/* ===== Active Page Highlight ===== */
+#logseq-calendar-panel .day-cell.active-page,
+#logseq-calendar-panel .week-cell.active-page,
+#logseq-calendar-panel .clickable.active-page {
+  box-shadow: 0 0 0 1.5px var(--cal-link);
+}
+
+#logseq-calendar-panel .day-cell.active-page {
+  border-radius: 4px;
+}
+
+#logseq-calendar-panel .day-cell.today.active-page {
+  box-shadow: 0 0 0 1.5px var(--cal-link), inset 0 0 0 1.5px var(--cal-bg);
+}
+
+/* ===== Confirm Dialog Overlay & Card ===== */
+#logseq-calendar-panel {
+  position: relative;
+  /* Ensure the overlay is positioned relative to the panel */
+}
+
+#logseq-calendar-panel .confirm-dialog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+#logseq-calendar-panel .confirm-dialog {
+  background: var(--cal-bg);
+  border: 1px solid var(--cal-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  width: 100%;
+  max-width: 260px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark #logseq-calendar-panel .confirm-dialog {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+#logseq-calendar-panel .confirm-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cal-text);
+}
+
+#logseq-calendar-panel .confirm-desc {
+  font-size: 11px;
+  color: var(--cal-secondary-text);
+  line-height: 1.4;
+}
+
+#logseq-calendar-panel .confirm-desc strong {
+  color: var(--cal-text);
+  font-weight: 600;
+}
+
+#logseq-calendar-panel .confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+#logseq-calendar-panel .confirm-btn {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  border: none;
+}
+
+#logseq-calendar-panel .btn-cancel {
+  background: var(--cal-hover-bg);
+  color: var(--cal-text);
+  border: 1px solid var(--cal-border);
+}
+
+#logseq-calendar-panel .btn-cancel:hover {
+  background: var(--cal-border);
+}
+
+#logseq-calendar-panel .btn-create {
+  background: var(--cal-link);
+  color: #ffffff;
+}
+
+#logseq-calendar-panel .btn-create:hover {
+  opacity: 0.9;
+  transform: translateY(-0.5px);
+}
+
+#logseq-calendar-panel .btn-create:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,42 @@
+name: Release Plugin
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on any tag push matching v*, e.g., v1.0.0
+
+jobs:
+  build:
+    name: Build & Package Plugin
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for softprops/action-gh-release to upload assets
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Code
+        run: npm run build
+
+      - name: Create Zip Package
+        run: |
+          # Package dist/ folder, package.json, icon.png, and other required assets
+          zip -r logseq-sidebar-calendar-plugin.zip dist package.json README.md LICENSE icon.png
+
+      - name: Create GitHub Release & Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: logseq-sidebar-calendar-plugin.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

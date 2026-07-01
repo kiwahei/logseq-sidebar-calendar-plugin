@@ -1,0 +1,8 @@
+{
+  "title": "Calendar Widget",
+  "description": "Sidebar calendar plugin for logseq.",
+  "author": "kiwahei",
+  "repo": "kiwahei/logseq-sidebar-calendar-plugin",
+  "icon": "icon.png",
+  "supportsDB": true
+}

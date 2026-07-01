@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Logseq Sidebar Calendar</title>
+  <link rel="stylesheet" href="./src/index.css" />
+</head>
+
+<body>
+  <div id="logseq-calendar-panel">
+    <div class="panel-header">
+      <div class="header-top">
+        <span id="logseq-calendar-header-quarter" class="clickable"></span>
+        <span class="header-sep">·</span>
+        <span id="logseq-calendar-header-year" class="clickable"></span>
+        <span class="header-sep">·</span>
+        <span id="logseq-calendar-today-btn" class="clickable">Today</span>
+      </div>
+      <div class="header-nav">
+        <button id="logseq-calendar-prev-month" class="nav-btn" title="Previous Month">◀</button>
+        <span id="logseq-calendar-header-month" class="clickable header-month"></span>
+        <button id="logseq-calendar-next-month" class="nav-btn" title="Next Month">▶</button>
+      </div>
+    </div>
+
+    <table id="logseq-calendar-grid">
+      <thead>
+        <tr>
+          <th class="wk-col">Wk</th>
+          <th>Su</th>
+          <th>Mo</th>
+          <th>Tu</th>
+          <th>We</th>
+          <th>Th</th>
+          <th>Fr</th>
+          <th>Sa</th>
+        </tr>
+      </thead>
+      <tbody id="logseq-calendar-body"></tbody>
+    </table>
+  </div>
+
+  <script src="./src/index.ts" type="module"></script>
+</body>
+
+</html>

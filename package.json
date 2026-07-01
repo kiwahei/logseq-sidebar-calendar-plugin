@@ -1,0 +1,26 @@
+{
+  "name": "logseq-sidebar-calendar-plugin",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A persistent, interactive bottom-left calendar widget for Logseq with ISO week numbers and custom date formatting.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "zip": "zip -r logseq-sidebar-calendar-plugin.zip dist package.json"
+  },
+  "logseq": {
+    "id": "logseq-sidebar-calendar-plugin",
+    "title": "Sidebar Calendar",
+    "icon": "./icon.png",
+    "main": "dist/index.html"
+  },
+  "devDependencies": {
+    "@logseq/libs": "^0.0.17",
+    "typescript": "^6.0.3",
+    "vite": "^5.2.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^4.4.0"
+  }
+}
