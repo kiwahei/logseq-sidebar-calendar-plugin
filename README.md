@@ -2,7 +2,7 @@
 
 Sidebar calendar plugin for logseq. (i only tested in logseq db!)
 
-![Logseq Sidebar Calendar plugin Banner](https://raw.githubusercontent.com/kiwahei/logseq-sidebar-calendar-plugin/main/capture.png) 
+![Logseq Sidebar Calendar plugin Banner](https://raw.githubusercontent.com/kiwanoy/logseq-sidebar-calendar-plugin/main/capture.png) 
 
 ---
 
@@ -44,7 +44,7 @@ After installing the plugin, you can customize the following settings under **Se
 
 ### Manual Installation (Developer Mode)
 
-1. Download the latest `logseq-sidebar-calendar-plugin.zip` from the [Releases](https://github.com/kiwahei/logseq-sidebar-calendar-plugin/releases) tab.
+1. Download the latest `logseq-sidebar-calendar-plugin.zip` from the [Releases](https://github.com/kiwanoy/logseq-sidebar-calendar-plugin/releases) tab.
 2. Extract the zip file locally.
 3. Open Logseq and go to **Settings > Advanced**.
 4. Enable **Developer Mode**.
